@@ -80,12 +80,18 @@ public class ImageProcessor {
         /*# YOUR CODE HERE */
         for (int row = 0; row < this.image.length; row++) {
             for (int col = 0; col < this.image[0].length; col++) {
-                if (image[row][col] > 128 && (image[row][col] * 0.2) + image[row][col] != 0) {
-                
+                if (image[row][col] > 128) {
+                    int val = 128 - image[row][col];
+                    val = (int) (val * 0.2);
+                    image[row][col] = image[row][col] + val;
+                }
+                if (image[row][col] < 128) {
+                    int val = image[row][col] - 128;
+                    val = (int) (val * 0.2);
+                    image[row][col] = image[row][col] - val;
                 }
             }
         }
-
         this.redisplayImage();
     }
 
