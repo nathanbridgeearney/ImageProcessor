@@ -102,8 +102,13 @@ public class ImageProcessor {
      * with the corresponding values on the right half
      */
     public void flipImageHorizontally() {
-        /*# YOUR CODE HERE */
-
+        int[][] temp = new int[this.image.length][this.image[0].length];
+        for (int row = 0; row < this.image.length; row++) {
+            for (int col = 0; col < this.image[0].length; col++) {
+                temp[row][col] = image[row][this.image[0].length - 1 - col];
+            }
+        }
+        image = temp;
         this.redisplayImage();
     }
 
@@ -115,7 +120,10 @@ public class ImageProcessor {
      */
     public void shiftImageVertically() {
         /*# YOUR CODE HERE */
-
+        image[0] = image[image.length - 1];
+        for (int row = image.length - 2; row > -1; row--) {
+            image[row + 1] = image[row];
+        }
         this.redisplayImage();
     }
 
@@ -130,7 +138,13 @@ public class ImageProcessor {
      */
     public void rotateImage180() {
         /*# YOUR CODE HERE */
-
+        int[][] temp = new int[this.image.length][this.image[0].length];
+        for (int row = 0; row < this.image.length; row++) {
+            for (int col = 0; col < this.image[0].length; col++) {
+                temp[row][col] = image[this.image.length - 1 - row][this.image[0].length - 1 - col];
+            }
+        }
+        image = temp;
         this.redisplayImage();
     }
 
@@ -146,7 +160,13 @@ public class ImageProcessor {
      */
     public void rotateImage90() {
         /*# YOUR CODE HERE */
-
+        int[][] temp = new int[this.image[0].length][this.image.length];
+        for (int row = 0; row < this.image.length; row++) {
+            for (int col = 0; col < this.image[0].length; col++) {
+                temp[col][this.image.length - 1 - row] = image[row][col];
+            }
+        }
+        image = temp;
         this.redisplayImage();
     }
 
@@ -160,6 +180,17 @@ public class ImageProcessor {
      */
     public void expandImage() {
         /*# YOUR CODE HERE */
+        int[][] temp = new int[(int)this.image.length * 4][(int)this.image[0].length * 4];
+        int counter = 0;
+        for (int row = 0; row < (int)this.image.length; row++) {
+            int counter2 = 0;
+            for (int col = 0; col < (int)this.image[0].length; col++) {
+                temp[row + counter][col + counter2] = image[row][col];
+                counter2++;
+            }
+            counter++;
+        }
+        image = temp;
 
         this.redisplayImage();
     }
