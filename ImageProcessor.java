@@ -180,13 +180,20 @@ public class ImageProcessor {
      */
     public void expandImage() {
         /*# YOUR CODE HERE */
-        int[][] temp = new int[(int)this.image.length * 4][(int)this.image[0].length * 4];
+        int[][] temp = new int[this.image.length][this.image[0].length];
         int counter = 0;
-        for (int row = 0; row < (int)this.image.length; row++) {
+        for (int row = 0; row < this.image.length; row++) {
             int counter2 = 0;
-            for (int col = 0; col < (int)this.image[0].length; col++) {
-                temp[row + counter][col + counter2] = image[row][col];
-                counter2++;
+            for (int col = 0; col < this.image[0].length; col++) {
+                if ((col < (int) this.image[0].length / 2) && (row < (int) this.image.length / 2)) {
+
+
+
+                        temp[row + counter][col + counter2] = image[row][col];
+                        temp[row + counter + 1][col + counter2 + 1] = image[row][col];
+                        counter2++;
+                    }
+
             }
             counter++;
         }
